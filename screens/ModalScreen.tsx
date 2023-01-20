@@ -6,10 +6,11 @@ import { Text, View } from '../components/Themed';
 import NaiveBayesClassifier from 'naive-bayes-classifier';
 
 export default function ModalScreen() {
+  const splitFunction = (i: string) => i.split(",");
   let nb = new NaiveBayesClassifier();
   // test dataset
 
-  const data = [
+  const trainArray = [
     { product: "Camara", quality: "Alta" },
     { product: "Camara", quality: "Media" },
     { product: "Alarma", quality: "Alarma" },
@@ -26,8 +27,9 @@ export default function ModalScreen() {
     quality: "Media"
 }];
 
-  nb.train(data);
-  nb.test(data, testData); 
+
+  nb.train(trainArray);
+  nb.test(trainArray, testData); 
   
   return (
     <View style={styles.container}>
