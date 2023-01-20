@@ -6,7 +6,7 @@ import { RootTabScreenProps } from '../types';
 import axios from 'axios';
 
 
-const baseURL = "http://74.208.242.153:4000";
+const baseURL = "http://74.208.242.153:3000";
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
 

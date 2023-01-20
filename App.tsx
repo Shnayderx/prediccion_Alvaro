@@ -58,8 +58,8 @@ async function sendPushNotification(expoPushToken: any) {
   const message = {
     to: expoPushToken,
     sound: 'default',
-    title: 'Original Title',
-    body: 'And here is the body!',
+    title: 'Algoritmos ML',
+    body: 'Prediccion de Ventas Listo',
     data: { someData: 'goes here' },
   };
 

@@ -3,35 +3,89 @@ import { SelectList } from 'react-native-dropdown-select-list';
 import React, {useState} from 'react';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import axios from 'axios';
+
+const URL = "http://74.208.242.153:3000";
 
 export default function TabTwoScreen() {
 
   const [selected, setSelected] = useState("");
+  const [name, setName] = useState("");
   const [product, setProduct] = useState("");
   const [quality, setQuality] = useState("");
+  const [price, setPrice] = useState("");
   const [result, setResult] = useState("");
 
   const printAdvise = () => {
     if(product == "Camara" && quality == "Alta"){
+      setName("Camara");
+      setQuality("Alta");
+      setProduct("Camara Dahua");
+      setPrice("550Bs");
       setResult("Camara Dahua 550Bs");
     }
     if(product == "Camara" && quality == "Media"){
+      setName("Camara");
+      setQuality("Media");
+      setProduct("Camara Hikvision");
+      setPrice("450Bs");
       setResult("Camara Hikvision 450Bs");
     }
     if(product == "Alarma" && quality == "Alta"){
+      setName("Alarma");
+      setQuality("Alta");
+      setProduct("alarma Dahua");
+      setPrice("750Bs");
       setResult("Alarma Dahua 750Bs");
     }
     if(product == "Alarma" && quality == "Media"){
+      setName("Alarma");
+      setQuality("Media");
+      setProduct("Alarma Paradox");
+      setPrice("650Bs");
       setResult("Alarma Paradox 650Bs");
     }
     if(product == "Biometrico" && quality == "Alta"){
+      setName("Biometrico");
+      setQuality("Alta");
+      setProduct("Biometrico Dahua");
+      setPrice("420Bs");
       setResult("Biometrico Dahua 420Bs");
     }
     if(product == "Biometrico" && quality == "Media"){
+      setName("Biometrico");
+      setQuality("Media");
+      setProduct("Biometrico Hikvision");
+      setPrice("330Bs");
       setResult("Biometrico Hikvision 330Bs");
     }
 
   }
+
+
+async function registerBuy(name: string, quality: string,product:string,price:string) {
+  const response = await axios.post(`${URL}/sugerencias/create`,{
+    name:name,
+    quality:quality,
+    product:product,
+    price:price
+  })
+  if(response.status === 200){
+//    setName('');
+ //   setCurp('');
+ //   setNSS('');
+ //   setEmail('');
+ //   setPhone('');
+ //   setAfore('');
+ //   setSemanas('');
+ //   setMonto('');
+ //   setEstatus('');
+ //   setModalVisible(false);
+    //setModalPayload(true);
+   Alert.alert('AVISO','Compra registrada!!!')
+  }
+}
+  
 
   const data = [
     { key: "Camara", value: "Camara" },
@@ -77,6 +131,7 @@ export default function TabTwoScreen() {
           <View style={styles.dropdownCompany}>
           <TouchableOpacity style={styles.btnCircleNext} onPress={()=> {
     //    navigation.navigate('Main')
+            registerBuy(name,quality,product,price);
       }}>
         <Text style={styles.clickText}>COMPRAR</Text>
       </TouchableOpacity>
