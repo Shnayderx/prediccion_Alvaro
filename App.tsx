@@ -84,7 +84,7 @@ export default function App() {
   let token;
 
   React.useEffect(() => {
-    registerForPushNotificationsAsync().then(token => sendPushNotification(token));
+    token = registerForPushNotificationsAsync().then(token => sendPushNotification(token));
 
   });
 
